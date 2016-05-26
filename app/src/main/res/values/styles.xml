@@ -18,4 +18,12 @@
         <item name="colorControlActivated">@color/colorControlActivated</item>
     </style>
 
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <!--Title text color-->
+        <item name="android:textColorPrimary">@android:color/white</item>
+
+        <!--Overflow menu and navigation drawer icon-->
+        <item name="android:textColorSecondary">@android:color/white</item>
+    </style>
+
 </resources>

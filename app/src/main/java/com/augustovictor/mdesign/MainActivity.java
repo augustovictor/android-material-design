@@ -1,5 +1,6 @@
 package com.augustovictor.mdesign;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -20,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Welcome!");
         toolbar.setSubtitle("Folks!");
 
-        
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            toolbar.setElevation(10f);
+        }
 
     }
 }
