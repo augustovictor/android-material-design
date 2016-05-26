@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MDesign</string>
+    <string name="edit_txt">Edit</string>
+    <string name="search_txt">Search</string>
+    <string name="delete_txt">Delete</string>
+    <string name="settings_txt">Settings</string>
+    <string name="exit_txt">Exit</string>
 </resources>
