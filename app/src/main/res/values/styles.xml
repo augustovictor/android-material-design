@@ -7,7 +7,7 @@
 
     </style>
 
-    <style name="ParentMaterialTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="ParentMaterialTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!--Parent theme for all the devices-->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
