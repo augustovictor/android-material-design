@@ -5,4 +5,7 @@
     <string name="delete_txt">Delete</string>
     <string name="settings_txt">Settings</string>
     <string name="exit_txt">Exit</string>
+    <string name="thumbnail">Image description</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
 </resources>
