@@ -51,23 +51,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     class MyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView mTitle;
-        private ImageView mImageThumb, mImageDelete, mImageAdd;
-        private int mPosition;
-        private Landscape mCurrent;
+        private ImageView mImageThumb;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             mTitle = (TextView) itemView.findViewById(R.id.title_row);
             mImageThumb = (ImageView) itemView.findViewById(R.id.img_row);
-            mImageDelete = (ImageView) itemView.findViewById(R.id.img_row_delete);
-            mImageAdd = (ImageView) itemView.findViewById(R.id.img_row_add);
         }
 
         public void setData(Landscape currentObj, int position) {
             this.mTitle.setText(currentObj.getTitle());
             this.mImageThumb.setImageResource(currentObj.getImageId());
-            this.mPosition = position;
-            this.mCurrent = currentObj;
         }
     }
 }

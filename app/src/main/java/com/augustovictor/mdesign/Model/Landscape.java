@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class Landscape {
     private int imageId;
     private String title;
-    private String descriptio;
 
     public int getImageId() {
         return imageId;
@@ -26,14 +25,6 @@ public class Landscape {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getDescriptio() {
-        return descriptio;
-    }
-
-    public void setDescriptio(String descriptio) {
-        this.descriptio = descriptio;
     }
 
     public static ArrayList<Landscape> getData() {
@@ -53,8 +44,10 @@ public class Landscape {
 
     public static int[] getImages() {
         int[] images = {
-                R.drawable.tb0, R.drawable.tb2, R.drawable.tb3, R.drawable.tb4, R.drawable.tb5, R.drawable.tb6, R.drawable.tb7, R.drawable.tb8, R.drawable.tb9, R.drawable.tb10,
-                R.drawable.tb11, R.drawable.tb12, R.drawable.tb13, R.drawable.tb14, R.drawable.tb15
+//                R.drawable.tb0, R.drawable.tb2, R.drawable.tb3, R.drawable.tb4, R.drawable.tb5, R.drawable.tb6, R.drawable.tb7, R.drawable.tb8, R.drawable.tb9, R.drawable.tb10,
+//                R.drawable.tb11, R.drawable.tb12, R.drawable.tb13, R.drawable.tb14, R.drawable.tb15
+                R.drawable.sample1, R.drawable.sample2, R.drawable.sample3, R.drawable.sample4, R.drawable.sample5, R.drawable.sample6, R.drawable.sample7, R.drawable.sample8,
+                R.drawable.sample9, R.drawable.sample10
         };
 
         return images;
