@@ -2,6 +2,7 @@ package com.augustovictor.mdesign.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,16 +19,18 @@ import java.util.List;
  */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
 
+    private static final String TAG = RecyclerAdapter.class.getSimpleName();
     private List<Landscape> mData;
     private LayoutInflater mInflater;
 
     public RecyclerAdapter(Context context, List<Landscape> mData) {
-        this.mData = mData;
         this.mInflater = LayoutInflater.from(context);
+        this.mData = mData;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Log.d(TAG, "onCreateViewHolder");
         View view = mInflater.inflate(R.layout.list_item, parent, false);
         MyViewHolder holder = new MyViewHolder(view);
         return holder;
@@ -35,6 +38,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
+        Log.d(TAG, "onCreateViewHolder " + position);
         Landscape currentObj = mData.get(position);
         holder.setData(currentObj, position);
     }

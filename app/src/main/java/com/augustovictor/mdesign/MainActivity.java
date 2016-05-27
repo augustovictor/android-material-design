@@ -2,9 +2,13 @@ package com.augustovictor.mdesign;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
-import android.widget.Toast;
+
+import com.augustovictor.mdesign.Adapter.RecyclerAdapter;
+import com.augustovictor.mdesign.Model.Landscape;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,49 +21,24 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Welcome!");
-        toolbar.setSubtitle("Folks! (standalone)");
+        toolbar.setSubtitle("Folks! (CardViews)");
 
         toolbar.inflateMenu(R.menu.menu_main);
 
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
+        setUpRecyclerView();
 
-                String msg = "";
+    }
 
-                switch (item.getItemId()) {
+    private void setUpRecyclerView() {
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        RecyclerAdapter mRecyclerAdapter = new RecyclerAdapter(this, Landscape.getData());
+        mRecyclerView.setAdapter(mRecyclerAdapter);
 
-                    case R.id.menu_delete_opt:
-                        msg = "Delete option selected";
-                        break;
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
-                    case R.id.menu_search_opt:
-                        msg = "Search option selected";
-                        break;
-
-                    case R.id.menu_edit_opt:
-                        msg = "Edit option selected";
-                        break;
-
-                    case R.id.menu_settings_opt:
-                        msg = "Settings option selected";
-                        break;
-
-                    case R.id.menu_exit_opt:
-                        msg = "Exit option selected";
-                        break;
-
-                }
-
-                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
-                return true;
-            }
-        });
-
-
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//            toolbar.setElevation(10f);
-//        }
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
     }
 

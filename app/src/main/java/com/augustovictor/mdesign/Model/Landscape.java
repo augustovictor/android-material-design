@@ -54,8 +54,8 @@ public class Landscape {
     public static int[] getImages() {
         int[] images = {
                 R.drawable.tb0, R.drawable.tb2, R.drawable.tb3, R.drawable.tb4, R.drawable.tb5, R.drawable.tb6, R.drawable.tb7, R.drawable.tb8, R.drawable.tb9, R.drawable.tb10,
-                R.drawable.tb11, R.drawable.tb12, R.drawable.tb13, R.drawable.tb14, R.drawable.tb15;
-        }
+                R.drawable.tb11, R.drawable.tb12, R.drawable.tb13, R.drawable.tb14, R.drawable.tb15
+        };
 
         return images;
     }
