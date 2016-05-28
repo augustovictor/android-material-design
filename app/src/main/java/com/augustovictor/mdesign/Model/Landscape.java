@@ -3,6 +3,7 @@ package com.augustovictor.mdesign.Model;
 import com.augustovictor.mdesign.R;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by victoraweb on 5/26/16.
@@ -31,12 +32,16 @@ public class Landscape {
         ArrayList<Landscape> dataList = new ArrayList<>();
 
         int[] images = getImages();
+        Random random = new Random();
 
         for(int i = 0; i < images.length; i++) {
-            Landscape landscape = new Landscape();
-            landscape.setImageId(images[i]);
-            landscape.setTitle("land" + i);
-            dataList.add(landscape);
+            for(int j = 0; j < images.length; j++) {
+                Landscape landscape = new Landscape();
+                int n = random.nextInt(10);
+                landscape.setImageId(images[n]);
+                landscape.setTitle("land " + i + "." + j);
+                dataList.add(landscape);
+            }
         }
 
         return dataList;
