@@ -79,7 +79,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         @Override
         public void onClick(View v) {
             Log.d(TAG, "onClick before operation at Position " + mPosition + " Size: " + mData.size());
-
             switch (v.getId()) {
                 case R.id.img_row_delete:
                     removeItem(mPosition);
@@ -96,11 +95,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     public void removeItem(int position) {
         mData.remove(position);
-        notifyItemChanged(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, mData.size());
     }
 
     public void addItem(int position, Landscape landscape) {
         mData.add(position, landscape);
         notifyItemInserted(position);
+        notifyItemRangeChanged(position, mData.size());
     }
 }
