@@ -2,7 +2,6 @@ package com.augustovictor.mdesign.Adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +19,8 @@ import java.util.List;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
 
     private static final String TAG = RecyclerAdapter.class.getSimpleName();
+    private static final int PRIME_ROW = 1;
+    private static final int NOT_PRIME_ROW = 0;
     private List<Landscape> mData;
     private LayoutInflater mInflater;
 
@@ -30,18 +31,39 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.d(TAG, "onCreateViewHolder");
-        View view = mInflater.inflate(R.layout.list_item, parent, false);
-        MyViewHolder holder = new MyViewHolder(view);
-        return holder;
+        switch (viewType) {
+            case PRIME_ROW:
+                ViewGroup primeRow = (ViewGroup) mInflater.inflate(R.layout.list_item_prime, parent, false);
+                MyViewHolder viewHolderPrime = new MyViewHolderPrime(primeRow);
+                return viewHolderPrime;
+
+            case NOT_PRIME_ROW:
+                ViewGroup notPrimeRow = (ViewGroup) mInflater.inflate(R.layout.list_item_not_prime, parent, false);
+                MyViewHolder viewHolderNotPrime = new MyViewHolderNotPrime(notPrimeRow);
+                return viewHolderNotPrime;
+
+            default:
+                ViewGroup defaultRow = (ViewGroup) mInflater.inflate(R.layout.list_item_not_prime, parent, false);
+                MyViewHolder defaultHolder = new MyViewHolder(defaultRow);
+                return defaultHolder;
+        }
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Log.d(TAG, "onCreateViewHolder " + position);
-        Landscape currentObj = mData.get(position);
-        holder.setData(currentObj, position);
-        holder.setListeners();
+        Landscape currentRowItem = mData.get(position);
+
+        switch (holder.getItemViewType()) {
+            case PRIME_ROW:
+                MyViewHolderPrime holderPrime = (MyViewHolderPrime) holder;
+                holderPrime.setData(currentRowItem);
+                break;
+
+            case NOT_PRIME_ROW:
+                MyViewHolderNotPrime holderNotPrime = (MyViewHolderNotPrime) holder;
+                holderNotPrime.setData(currentRowItem);
+                break;
+        }
     }
 
     @Override
@@ -49,59 +71,56 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         return mData.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public int getItemViewType(int position) {
+        Landscape landscape = mData.get(position);
+        if(landscape.isPrime()) {
+            return PRIME_ROW;
+        } else {
+            return NOT_PRIME_ROW;
+        }
+    }
 
-        private TextView mTitle;
-        private ImageView mImageThumb, mImageDelete, mImageAdd;
-        private int mPosition;
-        private Landscape mCurrent;
+    class MyViewHolder extends RecyclerView.ViewHolder {
 
         public MyViewHolder(View itemView) {
             super(itemView);
+        }
+    }
+
+    class MyViewHolderPrime extends MyViewHolder {
+
+        private TextView mTitle;
+        private ImageView mImageThumb, mImgRowType;
+
+        public MyViewHolderPrime(View itemView) {
+            super(itemView);
             mTitle = (TextView) itemView.findViewById(R.id.title_row);
             mImageThumb = (ImageView) itemView.findViewById(R.id.img_row);
-            mImageDelete = (ImageView) itemView.findViewById(R.id.img_row_delete);
-            mImageAdd = (ImageView) itemView.findViewById(R.id.img_row_add);
+            mImgRowType = (ImageView) itemView.findViewById(R.id.list_item_img_row_prime);
         }
 
-        public void setData(Landscape currentObj, int position) {
+        public void setData(Landscape currentObj) {
             this.mTitle.setText(currentObj.getTitle());
             this.mImageThumb.setImageResource(currentObj.getImageId());
-            this.mPosition = position;
-            this.mCurrent = currentObj;
-        }
-
-        public void setListeners() {
-            mImageDelete.setOnClickListener(MyViewHolder.this);
-            mImageAdd.setOnClickListener(MyViewHolder.this);
-        }
-
-        @Override
-        public void onClick(View v) {
-            Log.d(TAG, "onClick before operation at Position " + mPosition + " Size: " + mData.size());
-            switch (v.getId()) {
-                case R.id.img_row_delete:
-                    removeItem(mPosition);
-                    break;
-
-                case R.id.img_row_add:
-                    addItem(mPosition, mCurrent);
-                    break;
-            }
-
-            Log.d(TAG, "onClick after operation - Size " + mData.size());
+            this.mImgRowType.setImageResource(R.drawable.ic_add);
         }
     }
 
-    public void removeItem(int position) {
-        mData.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, mData.size());
-    }
+    class MyViewHolderNotPrime extends MyViewHolder {
+        private TextView mTitle;
+        private ImageView mImageThumb, mImgRowType;
 
-    public void addItem(int position, Landscape landscape) {
-        mData.add(position, landscape);
-        notifyItemInserted(position);
-        notifyItemRangeChanged(position, mData.size());
+        public MyViewHolderNotPrime(View itemView) {
+            super(itemView);
+            mTitle = (TextView) itemView.findViewById(R.id.title_row);
+            mImageThumb = (ImageView) itemView.findViewById(R.id.img_row);
+            mImgRowType = (ImageView) itemView.findViewById(R.id.list_item_img_row_not_prime);
+        }
+
+        public void setData(Landscape currentObj) {
+            this.mTitle.setText(currentObj.getTitle());
+            this.mImageThumb.setImageResource(currentObj.getImageId());
+            this.mImgRowType.setImageResource(R.drawable.ic_delete);
+        }
     }
 }

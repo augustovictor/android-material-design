@@ -13,4 +13,6 @@
     <string name="grid_view_txt">GridView</string>
     <string name="staggered_view_h_txt">StaggeredViewHorizontal</string>
     <string name="staggered_view_v_txt">StaggeredViewVertical</string>
+    <string name="prime_txt">Prime</string>
+    <string name="not_prime_txt">Not Prime</string>
 </resources>

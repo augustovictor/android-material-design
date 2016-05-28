@@ -12,6 +12,7 @@ public class Landscape {
     private int imageId;
     private String title;
     private String description;
+    private boolean prime;
 
 
     public int getImageId() {
@@ -38,6 +39,14 @@ public class Landscape {
         this.description = description;
     }
 
+    public boolean isPrime() {
+        return prime;
+    }
+
+    public void setPrime(boolean prime) {
+        this.prime = prime;
+    }
+
     public static ArrayList<Landscape> getData() {
         ArrayList<Landscape> dataList = new ArrayList<>();
 
@@ -50,11 +59,25 @@ public class Landscape {
                 int n = random.nextInt(10);
                 landscape.setImageId(images[n]);
                 landscape.setTitle("land " + i + "." + j);
+                landscape.setPrime(checkPrime(i));
                 dataList.add(landscape);
             }
         }
 
         return dataList;
+    }
+
+    private static boolean checkPrime(int position) {
+        if(position == 0 || position == 1) {
+            return false;
+        }
+
+        for(int i = 2; i <= position/2; i++) {
+            if(position % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static int[] getImages() {
