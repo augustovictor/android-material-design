@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Landscape {
     private int imageId;
     private String title;
-    private String descriptio;
+    private String description;
 
     public int getImageId() {
         return imageId;
@@ -28,12 +28,12 @@ public class Landscape {
         this.title = title;
     }
 
-    public String getDescriptio() {
-        return descriptio;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescriptio(String descriptio) {
-        this.descriptio = descriptio;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public static ArrayList<Landscape> getData() {
