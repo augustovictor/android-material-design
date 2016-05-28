@@ -11,6 +11,8 @@ import java.util.Random;
 public class Landscape {
     private int imageId;
     private String title;
+    private String description;
+
 
     public int getImageId() {
         return imageId;
@@ -26,6 +28,14 @@ public class Landscape {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public static ArrayList<Landscape> getData() {
